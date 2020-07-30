@@ -31,7 +31,7 @@
 #include "Adafruit_BME280.h"
 #include "Arduino.h"
 #include <SPI.h>
-#include <Wire.h>
+#include <SlowSoftWire.h>
 
 /*!
  *  @brief  class constructor
@@ -79,7 +79,7 @@ Adafruit_BME280::~Adafruit_BME280(void) {
  *   @param theWire the I2C object to use, defaults to &Wire
  *   @returns true on success, false otherwise
  */
-bool Adafruit_BME280::begin(uint8_t addr, TwoWire *theWire) {
+bool Adafruit_BME280::begin(uint8_t addr, SlowSoftWire *theWire) {
   bool status = false;
   _i2caddr = addr;
   _wire = theWire;

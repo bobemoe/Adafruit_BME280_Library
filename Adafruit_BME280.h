@@ -25,7 +25,7 @@
 
 #include <Adafruit_Sensor.h>
 #include <SPI.h>
-#include <Wire.h>
+#include <SlowSoftWire.h>
 
 /*!
  *  @brief  default I2C address
@@ -215,7 +215,7 @@ public:
   Adafruit_BME280(int8_t cspin, SPIClass *theSPI = &SPI);
   Adafruit_BME280(int8_t cspin, int8_t mosipin, int8_t misopin, int8_t sckpin);
   ~Adafruit_BME280(void);
-  bool begin(uint8_t addr = BME280_ADDRESS, TwoWire *theWire = &Wire);
+  bool begin(uint8_t addr = BME280_ADDRESS, SlowSoftWire *theWire = NULL);
   bool init();
 
   void setSampling(sensor_mode mode = MODE_NORMAL,
@@ -239,7 +239,7 @@ public:
   Adafruit_Sensor *getHumiditySensor(void);
 
 protected:
-  TwoWire *_wire; //!< pointer to a TwoWire object
+  SlowSoftWire *_wire; //!< pointer to a TwoWire object
   SPIClass *_spi; //!< pointer to SPI object
 
   Adafruit_BME280_Temp *temp_sensor = NULL;
